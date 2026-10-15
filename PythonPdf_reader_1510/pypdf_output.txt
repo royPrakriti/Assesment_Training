@@ -1,0 +1,61 @@
+Vendor Service Performance Report
+Quarter: Q3 2026
+This report summarizes service activity for selected maintenance vendors supporting regional facilities.
+Service Summary
+ Vendor ID
+Vendor
+Region
+Jobs
+Avg Response (hrs)
+Cost (INR)
+Rating
+V301
+Apex Facility Care
+West
+48
+2.8
+245000
+4.6
+V302
+BluePeak Services
+South
+36
+3.4
+198000
+4.2
+V303
+NorthStar Maintenance
+North
+52
+2.5
+276000
+4.8
+V304
+UrbanFix Solutions
+East
+41
+4.1
+221000
+3.9
+V305
+Precision Works
+Central
+45
+3.0
+238000
+4.5
+Key Observations
+NorthStar Maintenance recorded the highest rating at 4.8 and the fastest average response time of 2.5
+hours.
+UrbanFix Solutions had the slowest average response time at 4.1 hours and the lowest rating at 3.9.
+Total reported service cost across all listed vendors was INR 1,178,000.
+Incident Notes
+V301 completed an emergency HVAC repair in Ahmedabad within 2.1 hours.
+V302 handled repeated electrical faults at two facilities in Chennai during August.
+V303 completed 12 preventive maintenance jobs with no repeat incidents reported.
+V304 received two complaints related to delayed technician arrival.
+V305 completed a generator inspection program across four central-region sites.
+Reference Information
+Report owner: Facilities Analytics Team
+Prepared date: 15 October 2026
+Confidentiality: Internal training sample
