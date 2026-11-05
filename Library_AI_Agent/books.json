@@ -1,0 +1,44 @@
+[
+    {
+        "id": 101,
+        "title": "Python Crash Course",
+        "author": "Eric Matthes",
+        "category": "Programming",
+        "available_copies": 2
+    },
+    {
+        "id": 102,
+        "title": "Clean Code",
+        "author": "Robert C. Martin",
+        "category": "Programming",
+        "available_copies": 5
+    },
+    {
+        "id": 103,
+        "title": "The Alchemist",
+        "author": "Paulo Coelho",
+        "category": "Fiction",
+        "available_copies": 4
+    },
+    {
+        "id": 104,
+        "title": "Atomic Habits",
+        "author": "James Clear",
+        "category": "Self-Help",
+        "available_copies": 6
+    },
+    {
+        "id": 105,
+        "title": "Introduction to Algorithms",
+        "author": "Thomas H. Cormen",
+        "category": "Computer Science",
+        "available_copies": 1
+    },
+    {
+        "id": 106,
+        "title": "Rich Dad Poor Dad",
+        "author": "Robert T. Kiyosaki",
+        "category": "Finance",
+        "available_copies": 3
+    }
+]

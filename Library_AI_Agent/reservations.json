@@ -1,0 +1,18 @@
+[
+    {
+        "reservation_id": "769b0f7f-7314-49d6-846d-59222920d196",
+        "book_id": 105,
+        "book_title": "Introduction to Algorithms",
+        "customer_name": "Prakriti Roy",
+        "reservation_date": "2026-11-04 16:54:05",
+        "status": "Confirmed"
+    },
+    {
+        "reservation_id": "f89ae864-3beb-4db0-9e3f-117fd0819903",
+        "book_id": 101,
+        "book_title": "Python Crash Course",
+        "customer_name": "Prakriti",
+        "reservation_date": "2026-11-05 09:52:00",
+        "status": "Confirmed"
+    }
+]
