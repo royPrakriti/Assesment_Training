@@ -1,0 +1,25 @@
+{
+  "coupons": [
+    {
+      "code": "SAVE10",
+      "description": "10% discount on workshop bookings",
+      "discount_percentage": 10,
+      "applicable_to": "individual",
+      "active": true
+    },
+    {
+      "code": "COUPLE10",
+      "description": "10% discount for couples booking together",
+      "discount_percentage": 10,
+      "applicable_to": "couples",
+      "active": true
+    },
+    {
+      "code": "WORKSHOP10",
+      "description": "10% discount on selected workshops",
+      "discount_percentage": 10,
+      "applicable_to": "all",
+      "active": true
+    }
+  ]
+}
