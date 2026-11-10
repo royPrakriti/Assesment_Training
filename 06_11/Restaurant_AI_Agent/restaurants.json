@@ -1,0 +1,50 @@
+[
+    {
+        "id": "R101",
+        "name": "Spice Garden",
+        "cuisine": "Indian",
+        "location": "Hyderabad",
+        "price_per_person": 800,
+        "available_seats": 20
+    },
+    {
+        "id": "R102",
+        "name": "Olive & Thyme",
+        "cuisine": "Italian",
+        "location": "Bengaluru",
+        "price_per_person": 1200,
+        "available_seats": 15
+    },
+    {
+        "id": "R103",
+        "name": "Sakura Bowl",
+        "cuisine": "Japanese",
+        "location": "Kolkata",
+        "price_per_person": 1500,
+        "available_seats": 12
+    },
+    {
+        "id": "R104",
+        "name": "The Coastal Pot",
+        "cuisine": "Seafood",
+        "location": "Kochi",
+        "price_per_person": 950,
+        "available_seats": 18
+    },
+    {
+        "id": "R105",
+        "name": "Taco Trail",
+        "cuisine": "Mexican",
+        "location": "Pune",
+        "price_per_person": 700,
+        "available_seats": 25
+    },
+    {
+        "id": "R106",
+        "name": "Maple Smokehouse",
+        "cuisine": "American",
+        "location": "Chennai",
+        "price_per_person": 1100,
+        "available_seats": 10
+    }
+]
