@@ -1,0 +1,1 @@
+[{"registration_id": "R101", "name": "Meera Das", "age": 28, "email": "meera@example.com", "ticket_type": "Premium", "amount": 2500.0}, {"registration_id": "R104", "name": "Feroz Ali", "age": 41, "email": "feroz@example.com", "ticket_type": "Standard", "amount": 1200.0}]
