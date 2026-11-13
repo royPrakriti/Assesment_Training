@@ -1,0 +1,527 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Aptos;}{\f1\fnil\fcharset0 Calibri;}{\f2\fnil\fcharset1 Segoe UI Symbol;}{\f3\fnil\fcharset1 Cambria Math;}{\f4\fnil\fcharset2 Symbol;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont3\mwrapIndent1440 }\viewkind4\uc1 
+\pard\widctlpar\sa160\sl276\slmult1\kerning2\b\f0\fs52\lang16393 Transformer Architecture in Detail\par
+\fs24 1. Introduction\par
+\b0 Transformer Architecture is a deep learning model introduced in 2017 through the research paper \b "Attention Is All You Need."\b0  It revolutionized Natural Language Processing (NLP) and became the foundation of modern AI systems such as GPT, BERT, Gemini, Claude, Llama, and Microsoft Copilot. Unlike traditional neural networks such as Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTMs), Transformers process all input tokens simultaneously, enabling faster training and better understanding of context.\par
+\b Key Highlights\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Introduced in 2017 by Google researchers.\par
+{\pntext\f4\'B7\tab}Foundation of Large Language Models (LLMs).\par
+{\pntext\f4\'B7\tab}Uses Self-Attention instead of recurrence.\par
+{\pntext\f4\'B7\tab}Supports parallel processing.\par
+{\pntext\f4\'B7\tab}Handles long-range dependencies effectively.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 2. Why Transformers Were Introduced\par
+\b0 Before Transformers, NLP tasks relied heavily on RNNs and LSTMs. These models processed text sequentially, causing challenges in handling long sentences and increasing training time.\par
+\b Limitations of RNNs and LSTMs\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Sequential processing leads to slower training.\par
+{\pntext\f4\'B7\tab}Difficulty remembering information from distant words.\par
+{\pntext\f4\'B7\tab}Vanishing and exploding gradient problems.\par
+{\pntext\f4\'B7\tab}Poor scalability for large datasets.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b How Transformers Solve These Problems\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Process words in parallel.\par
+{\pntext\f4\'B7\tab}Use attention mechanisms to capture context.\par
+{\pntext\f4\'B7\tab}Improve training efficiency.\par
+{\pntext\f4\'B7\tab}Scale effectively for billions of parameters.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 3. Overall Architecture\par
+\b0 A Transformer consists of two primary components:\par
+\b Encoder\par
+\b0 The Encoder processes the input sequence and learns its contextual representation.\par
+\b Decoder\par
+\b0 The Decoder uses the encoded information to generate outputs sequentially.\par
+\b Architecture Flow\par
+\par
+     INPUT SENTENCE\par
+                    \f1\par
+                           \f2\u9660?\f1\par
+                  Input Embeddings\par
+                           \f2\u9474?\f1\par
+                           \f2\u9660?\f1\par
+                 Positional Encoding\par
+                           \f2\u9474?\f1\par
+                           \f2\u9660?\f1\par
+         \f2\u9484?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9488?\f1\par
+         \f2\u9474?\f1         ENCODER            \f2\u9474?\f1\par
+         \f2\u9474?\f1  \f2\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\f1  \f2\u9474?\f1\par
+         \f2\u9474?\f1  Multi-Head Attention      \f2\u9474?\f1\par
+         \f2\u9474?\f1  Add & Normalize           \f2\u9474?\f1\par
+         \f2\u9474?\f1  Feed Forward Network      \f2\u9474?\f1\par
+         \f2\u9474?\f1  Add & Normalize           \f2\u9474?\f1\par
+         \f2\u9492?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9496?\f1\par
+                           \f2\u9474?\f1\par
+                           \f2\u9660?\f1\par
+                 Context Representation\par
+                           \f2\u9474?\f1\par
+                           \f2\u9660?\f1\par
+         \f2\u9484?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9488?\f1\par
+         \f2\u9474?\f1         DECODER            \f2\u9474?\f1\par
+         \f2\u9474?\f1  \f2\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\f1  \f2\u9474?\f1\par
+         \f2\u9474?\f1  Masked Multi-Head Attn    \f2\u9474?\f1\par
+         \f2\u9474?\f1  Add & Normalize           \f2\u9474?\f1\par
+         \f2\u9474?\f1  Encoder-Decoder Attn      \f2\u9474?\f1\par
+         \f2\u9474?\f1  Feed Forward Network      \f2\u9474?\f1\par
+         \f2\u9474?\f1  Add & Normalize           \f2\u9474?\f1\par
+         \f2\u9492?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9472?\u9496?\f1\par
+                           \f2\u9474?\f1\par
+                           \f2\u9660?\f1\par
+                    OUTPUT TEXT\f0\par
+\b0 Input Text\par
+     \f3\u8595?\f0\lang16393\par
+Input Embedding\par
+     \f3\u8595?\f0\lang16393\par
+Positional Encoding\par
+     \f3\u8595?\f0\lang16393\par
+Encoder Layers\par
+     \f3\u8595?\f0\lang16393\par
+Context Representation\par
+     \f3\u8595?\f0\lang16393\par
+Decoder Layers\par
+     \f3\u8595?\f0\lang16393\par
+Output Generation\par
+\par
+\b 4. Input Embeddings\par
+\b0 Computers cannot understand words directly. Therefore, each word is converted into numerical vectors called embeddings.\par
+\b Example\par
+\b0 Sentence: "I Love AI"\par
+\par
+I      \f3\u8594?\f0\lang16393  [0.12, 0.45, 0.91]\par
+Love   \f3\u8594?\f0\lang16393  [0.88, 0.67, 0.25]\par
+AI     \f3\u8594?\f0\lang16393  [0.73, 0.34, 0.91]\par
+\b Benefits\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Captures semantic meaning.\par
+{\pntext\f4\'B7\tab}Similar words have similar vector representations.\par
+{\pntext\f4\'B7\tab}Converts language into machine-understandable form.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 5. Positional Encoding\par
+\b0 Since Transformers process all words simultaneously, they need information about word order.\par
+\b Purpose\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Maintains sequence information.\par
+{\pntext\f4\'B7\tab}Distinguishes between sentences with the same words but different order.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Example\par
+\b0 "The dog chased the cat"\par
+"The cat chased the dog"\par
+Both contain the same words but have different meanings. Positional Encoding helps the model understand this difference.\par
+\b Benefits\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Preserves grammar.\par
+{\pntext\f4\'B7\tab}Maintains sentence structure.\par
+{\pntext\f4\'B7\tab}Improves contextual understanding.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 6. Self-Attention Mechanism\par
+\b0 Self-Attention is the most important component of the Transformer Architecture.\par
+It allows every word in a sentence to examine every other word and determine which words are most relevant.\par
+\b\par
+Example\par
+\b0 Sentence:\par
+\i "The bank approved the loan because it had enough funds."\i0\par
+The model determines that:\par
+"It" \f3\u8594?\f0\lang16393  Bank\par
+rather than:\par
+"It" \f3\u8594?\f0\lang16393  Loan\par
+\b Benefits\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Captures context efficiently.\par
+{\pntext\f4\'B7\tab}Handles long-range dependencies.\par
+{\pntext\f4\'B7\tab}Improves language understanding.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 7. Query, Key, and Value (QKV)\par
+\b0 Self-Attention relies on three vectors:\par
+\b Query (Q)\par
+\b0 Represents what a word is looking for.\par
+\b Key (K)\par
+\b0 Represents what information the word contains.\par
+\b Value (V)\par
+\b0 Contains the actual information of the word.\par
+\b Working Process\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sa160\sl276\slmult1\b0 Generate Query, Key, and Value vectors.\par
+{\pntext\f0 2.\tab}Compare Query with all Keys.\par
+{\pntext\f0 3.\tab}Calculate attention scores.\par
+{\pntext\f0 4.\tab}Apply Softmax function.\par
+{\pntext\f0 5.\tab}Generate weighted Value outputs.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Attention Formula\par
+\kerning0\b0\f1\fs22\lang9{\pict{\*\picprop{\sp{\sn wzDescription}{\sv Image}}{\sp{\sn posv}{\sv 1}}
+}\pngblip\picw7338\pich1305\picwgoal4160\pichgoal740 
+89504e470d0a1a0a0000000d49484452000001a00000004a080200000072fc175e000000017352
+474200aece1ce90000000467414d410000b18f0bfc610500000009704859730000162500001625
+01495224f000000f1749444154785eed9d3d7eda4e13c7f1731693c21f9f009fc0a449e5d69d29
+43932e65ba34a6345d5a576efe700273027f5204eee267e745422bcd8c56b06090e75b2458bb9a
+7dd54fbbabd5e8e2fdfd7de0388ed347fec7ff3b8ee3f40e1738c7717a8b0b9ce338bdc505ce71
+9c03b19c5c68dccc361ce9a0b8c039ce2760b39c4c8e23291536ffde06a387c57b60fd381a0c46
+8febe2f7e8eeeb25453a6cc65ce01ca7ef6c6637c3f1db5521294763fd77f5f0f3e9967f0e06d7
+5f3007975fae8b9f81db6f83e9f060e339df26e238fd26cc13c7f3308e22a5f9184062a7d75a1e
+3074f0b87efd9e5d827d04e7387d663919cfc3d4d050b74d98bededcf0d2d8c5c5cdcd64a90ca7
+e225b5c9920f077de24388301adbfcf7bc1a8cae86fc679dcbefaf8b87d5f4fe10c33898133b8e
+d347aa2b5f22ebc787100316ca38ce7a01a7142b670dd68b07948d41790212ccd0e1ada1083c4b
+31590071acacee860b9ce3f495165d41f96baa0a1d56b48604ae1e884715710ba4e81ba79b5be2
+5ce01ca79f90eaa882c1f226e88e2c62887452ab30252b574b8e77c105ce71fa0849913a6c62a5
+4a563186b4af128271d5a11b0127a5c9564ba677c01f32384e0f59fe9eae82aafc509e2d607090
+929fd2734bdcd221021bdb8258f1d3027838317cc667a3c6d3cfcdf265ce3f5bb9fcfe3388e1fc
+57bea70d2e708ed33b36b35f4154b69b69ebb0e63c7c33768e080f3df161289945711bbfddad5f
+eddd27cbc9700c69ada6c3f2a9abc5edb7a070abe7ff72299c0b9ce3f40d1222797806d0404cd3
+370edd6ec52da1a15dd0aa8b8b205be1b710a7c6ed13cf15df13f7e191c24d7fa7a861022e708e
+d33358dfd4e119856bfbd2f4501af7e16a1a6f1799bf64d2a10aa870d92cbbc0394ebfa0f5357d
+5b6db1c6260fbf0a7d6b4e6f79010e032e6f7fe0f3809ccb65055915ce05ce717a4555872c6405
+d4f58d75b190457a1e9073b9ac24a7c2b9c0394e9f20856ad73719d63769f98e27a85b59241d3a
+71857381739c1ec10ad5befa2fb199dde3ec56da5d220c0c699a9aef81c096e115ce7f33289c0b
+9ce3f487620466edffd0865e2c6f0f0bc9a987289c975fef7209510c38540abcfddb7b70e802e7
+38fd81d6c98c070cc8ed133c0405f71dec3764b39c4d6e86d315bc4e2aede6d82c7fa3bed52587
+8528ffa3867cd35fdea3e238ced963bc645567bd204722cc487f559edfcf2aa8bc74550d30cedf
+850e2531f1115c4ef046782c6ff3c702bc7ddd4c8a7bbd73caa40de090cbdbef4faf41015849ae
+7feaef5b5536eb062a13d86ac0abf9be5667724d525de072013a301c3f5ffd3c845fd28fe4f2fb
+ebfae7d5df5fc3be297741e4eff1accba8bf83a073b075b43da1e70cabbf6bfa73572c8163479d
+49af907d7296930bf4b91c6e6fda7d2cdd6faac1ce2e55236ad1ab0d1c275018c2bbfdfa71301d
+7e686f886b10ea70ff9125b4dc7870f7278c417077fe6e8f1f4f840e03b82d85c2f13a1a54f209
+5df2e210ae430736d6e08a09765eff4cc782727f94bcb7fb78e9ea37d5604797aa354a2b353301
+9eb2887587677d4c7fa06c8d1e1ed7943ad7e07eb961a367d9c105b8e97628cfa25c8eb3d6e28e
+0b7751f91249eec0aac08181d1c8687fa3b31fed3ad0133a62d76d2badd2ed76cd2126d7388f32
+d1a16f9219a9fb5088d2af30d3dd65795fc4cac28cee9317aba404556be736fa20f4363d4794eb
+a6402f6cd4ac8ac081f160d968dfdd82f272b4840cda2e796e26b51dba665fb287c73a1a52f385
+d9d2cbf321752e57321cdd2727ed0d700a1dac035420a3f1ce0aeea15af527766051e0f05c8842
+35d6b411944fb16e05e5e5680999c8975e89d5486a0b99349a841babeb45a8a48e87cd4bfa232e
+7aad1fee4331a9d7dbee243a5807acce768e50ab6bf59fd881258103c31445e8586cb70ec43182
+2ae0fe9b32626556051d8a8e17f92bba1846c323849910574b406ee97afa8f556d48cf03413991
+130a984d64b79f429c20664eca570242db9275b534444b910f4297aa32db97d876910a55e34607
+b37b887048ccf3d64a00f2b8781c8daa75caabb690cad6406156a907cef5719be680b4b47a5a07
+6e0a1c9c5744916c00462737fb3f07b2a885f62acd4383e2618a128e85c6a47874a4910b2321b2
+2b04710f099d868262d3ddf3a0561041a15ab09a4b834aa1a92cdd4eaf22240f87da0dda6526b8
+e4292495a0b0179a838f88d8ed1b53a94a192142a3874082b51e221cc2734b4204385ccf6425a5
+7004ffa090e27859a75a1d7004a348e70597c72e6e545a38542b7e5de0b04e4b93710d6f21db62
+ca7a50d398641ecf0f77b34a57964d76cf031d1692ab47c5832979d0ea87a050398b6da10a948d
+0add4eafd2c83bda4eb06717fa50707541ca241f4da87212da17c110ab14faa9c5c9420fc1ecf1
+11d182507b7a4fa01008c05f2d75ce3910ec9c275c1eadd48d9ac4f8f5d2c7fbe0f0755bfd4b15
+05b49f507ca1570da23779478f7fb6bb6025c72e74fe6a051babe988426b1eeabb81c84d7ddd11
+0c6d278c37db24e7c1865f4f567625d9a10a0774a98ad5f3b0d8abc48704b61bd3f86c351f0f85
+9d7ee9ed8b50551abbde8c0e56f490c1dd9f467d3d989da6789f5df04624f504daa2f6f66f164e
+1b3cf66d07791bd476a9681d98850e6948a07c6f6948e716358802d8d07a8d0b2510b358b528a0
+cb364a503864e6814ea807292790f1f8706a1eec5cf039cd93103a533b55214e6e27135b2263f8
+47a2a538174786452e90d621a4f6055a0b6146507b4814bf194bce0d1e35536a9b9a131cd78e8a
+514e05ce93023581da48510be11f52ccca086e39c1cfdfccc7bc0b383084db4d83d8b3678416c4
+e315b63dbcbffff5777017661aaf4ff14d49b86dcae331230fe2bd59f4f652188f0f27e72109f9
+a462fcd6cd2d615ce83d5daad2cb7ef42a0c38b98e06d727cbe5edd32b5dc8b1078b0eed8b18fd
+87b022e83da4da9ecd4e23440a9863491ac5d8c3c24ef0757f1a709e7623b10373528a04525f8a
+ef09d231460d32cea922dc36854301c31e9d500fa213ea66286e1c39390f80552e3949444ab79d
+a641238976cabcc38f0e36caf30c284e123be45e680fb926d47a6e2d831541ea0e183f3aa466b2
+66b43d2535b806594a8b7b0e7079ea8d5a52d61cfcd062f1088e17df947b78b484d1bc3195a841
+c63911c26d53bc935a79c05bb99254dd0cddf6e37596d43c20ea128f052fc4b4af75c608f7ff1c
+2e55ffe1da85fa85b906496d19fb9f30311796e0a543edc548a13d52da17682d831941e80ec228
+ac198b8cc6f0caa194d26639194eaf17781977e9611d7be3c923b47384dd8149e0e833d8dde64b
+059bd964a674c132a83a9adc128227d162317593a83f0a87042a7950c4485222fafa506d5db25b
+1e6815587679b083df547a5358bea2c54998e90ac2b216a02a994fa7ab5a15d86005efd857ba82
+656e5cb05413717b24b72f2056a549b5930bdd41d04321167b00aab09cdcffbd868c57b2125a2d
+3419a8db780e79c76e94b40e4175f07948eac02070bcf8d66cefcdf205ef3942f5866b3a1cda2c
+6737f7cf575f23eb52100d35b6cb26e441f479f0ad7a9dd8f7553018bb3930f200e0094582ac44
+61ac4307c06742287518d8c655d3350f64571698ce7e530d0ee852b5db48122fdc23e91b8969a8
+c0ade3156801aac1b80253db17a19ba078c78a103b98d44394bb2ab1ed34e5b754208fd0195ebe
+fdf9710571008c375b06f3f3317c57b9c83b5ec774098601ed59bb733a0c76072e66f9403c8fe5
+293001d7241f7f2f7759371f825a41550fa2e8b3a03e692ee7d455ca6508d8efbd3d434fa87242
+2d89ed13b88098836e7960f0146d09202a35a7ca410262ea81a829aa6955031aa6356b0566c665
+a82674939981da7b186df7fc0794760352da17a042b4145ced6042ad8a152d779a328ba555f68a
+0247201ad98ad32ca2d472d280cecdde3c6c36376c5d852bd06827cc584b3b9ed65395f324e5aa
+e7d64a8994ab7fe6b586a4f4a89327a929ce92c3085cb0fa214dceedb467da2e705968bff2132e
+2b30126ee3fcd7bee4b5163880607e082403e75f8e267924a10618fd90caa276da376d17b85c50
+ef2adf306c10f73e984ec54d17c233f6ccccd676f6cf797ab4df8bce973c9a10f161fa165f2f3b
+e30297135a7153fbc3768da8652deeb408974db48e74c684fb0a547f1f845a82452163f1c0e2c7
+dc0d3289b50b9cf349a02ba66da1febce132e62b22dcdc52acb11c0199e4355351e297ed1da7b7
+d0e6e3facb81fd82b686c9fb327761f9324fdb12142a774d1e44b52d561de15dd11df62acab8c0
+394e6fe06d91b95e660095499698cb2ff06fa62d92bc177b7fb57481739cfea0bc3eb31ba032ed
+dba10b68ccb5f7908ba0add319d4d205ce717a44c6492ae85b872114bdc3775a13541738c7e915
+fc76728e496a50ac0e4328d4a4bc13d4f4d1a38e0b9ce3f4097e2b77ff492abc756c0ca1e06ddf
+f2fbf2379319be2b9d75829a43df5ce01ca75f6452381891691213c40ddc01a0cf5a607df7369d
+e79ba00a9e5876c605ce71fa451685331e306c66f7e4a8e5f5fb2d0dd8785e9c69829a53df5ce0
+1ca76f645038fd0103f933149de3e699a066d5371738c7e91df4b98e7d144e7dc0405e44eb6119
+9fa0a2be75f576ade302e738fd23dd0fb088fa8081f66fd4f58d44a92e88e06f1e519d4a0bc8a6
+76c705ce717a08fad0def56b1dfa03067abe59d33e9a543604113e650b6fff77986dd2272a3a7c
+21a4151738c7e923344db57cd983d3741863350658c6021c6dc08d30be9b837ad861e64adf86c9
+363d055ce01ca79fe03741e4411c6c62bb18fe7a7e83f158e38b22ea029cf0dd9ccdacf9dd9c12
+d043b654ce57f5092b2a65f6cff3e23e16c7717a084e112597436bfa5e85e855d27491445e8cc8
+9b217e3263b12623e025091ca3564ea5096ae13d09cf34fc2042b89eeeaeb8c0394e9f69d10d12
+acaa13373862f9746bfd6e4e4961698d9f03b27dbc1e46de5ce01ca7efa086a992c583b8321cfe
+b6f42d1dd64ec4d62eccc321e4cd1d5e3a4edfb97d0a02321f2b5f54a58711e5d3888e2e440cf0
+81040ee0827c59ee4de00bfe03782f22ebda1be302e7387d07366c2caeff2abbe2d8871c3d8dd0
+1f3074043d82a054e29309f9dbe8c0f2e560ea16b808a338fee938cea76433bb194e5730dcfaf6
+72311e2cdef193fafbb19c5c8cdf58b9e0f73c587f1ace26bfbffc78e257588f818fe01ce7b353
+4e53272ff34c6f81e204b5d83a72fb63f11026c91737bf074755b7808fe01cc7290671b86a9661
+fc7632f808ce719cc2e3512e976e27830b9ce338c53435e36beea7814f511dc7e92d3e82731ca7
+b7b8c0398ed3530683ff0369019b2c04b1e4a70000000049454e44ae426082
+}\kerning2\i\f0\fs24\lang16393\line\i0\par
+Where:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 Q = Query Matrix\par
+{\pntext\f4\'B7\tab}K = Key Matrix\par
+{\pntext\f4\'B7\tab}V = Value Matrix\par
+{\pntext\f4\'B7\tab}\kerning0\f1\fs22\lang9{\pict{\*\picprop{\sp{\sn wzDescription}{\sv Image}}{\sp{\sn posv}{\sv 1}}
+}\pngblip\picw459\pich582\picwgoal260\pichgoal330 
+89504e470d0a1a0a0000000d494844520000001a00000021080200000048952cf7000000017352
+474200aece1ce90000000467414d410000b18f0bfc610500000009704859730000162500001625
+01495224f00000016b49444154484bed963d728330108521672114194e208e903e6d3ab848ba34
+d0fa08aed2046ee013642822dd05ef9fb04564aff07852f92b002dd263576f47433ecf73763f9e
+e47e271e72b7f38f72639b7bda51621ad07757b05d83934c6725a0a0145b9478356faf050d5514
+39f7fb03d7aa4c54d3e4ec7480e45e9e65a8725d8e924b2f752de7c6b6aec5ccbc6efbcf3d2497
+5e2a20968089839838b08bb6333421d955c4cbf1e2606924a4c272d1951c6c0619264172becc30
+0f8a6e4b8ee4e255c5d5782e10cf1ae538b9d5fb689020c50b7b008dc29d1fe2fa8f1ddca20d8c
+ad7da9b341ae282b19785cff3e555854ace5f0ebd2d9aef74dba9c3898a22f0cf7c90e5d034f27
+5b2160ceb6302c9537985722dc2810961d368dac04111f59262328405f81b637eb975e2e192e84
+89349172a2ac21db283948fe3059092f6c9373df702690abe4dfeeebcf992f59a681a5fa12a96c
+4e14bda3d8b6bd0b5d252fcecc431ebf3cb7926547e0d02f2f4546e6d50000000049454e44ae42
+6082
+}\kerning2\f0\fs24\lang16393 = Dimension of Key Vector\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 8. Multi-Head Attention\par
+\b0 Instead of using a single attention mechanism, Transformers use multiple attention heads.\par
+\b Example\par
+\b0 Different attention heads focus on:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 Grammar relationships\par
+{\pntext\f4\'B7\tab}Subject identification\par
+{\pntext\f4\'B7\tab}Object identification\par
+{\pntext\f4\'B7\tab}Context understanding\par
+{\pntext\f4\'B7\tab}Semantic meaning\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Working\par
+\b0 Input\par
+  \f3\u8595?\f0\lang16393\par
+Head 1\par
+Head 2\par
+Head 3\par
+Head 4\par
+  \f3\u8595?\f0\lang16393\par
+Concatenate Outputs\par
+  \f3\u8595?\f0\lang16393\par
+Final Representation\par
+\b Advantages\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Learns multiple relationships simultaneously.\par
+{\pntext\f4\'B7\tab}Improves contextual understanding.\par
+{\pntext\f4\'B7\tab}Captures different perspectives of data.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 9. Feed Forward Neural Network (FFN)\par
+\b0 After attention calculations, data passes through a Feed Forward Neural Network.\par
+\b Functions\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Learns complex patterns.\par
+{\pntext\f4\'B7\tab}Refines attention outputs.\par
+{\pntext\f4\'B7\tab}Introduces non-linearity.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Process\par
+\b0 Attention Output\par
+       \f3\u8595?\f0\lang16393\par
+Feed Forward Layer\par
+       \f3\u8595?\f0\lang16393\par
+Enhanced Representation\par
+\par
+\b 10. Residual Connections\par
+\b0 Deep neural networks often lose information when data passes through many layers.\par
+Residual Connections solve this issue.\par
+\b Formula\par
+\b0 Output = Input + Layer Output\par
+\b Benefits\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Prevents information loss.\par
+{\pntext\f4\'B7\tab}Improves gradient flow.\par
+{\pntext\f4\'B7\tab}Enables deeper networks.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 11. Layer Normalization\par
+\b0 Layer Normalization stabilizes learning by maintaining consistent activation values.\par
+\b Benefits\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Faster convergence.\par
+{\pntext\f4\'B7\tab}Stable training.\par
+{\pntext\f4\'B7\tab}Better performance.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Process\par
+\b0 Attention Output\par
+       \f3\u8595?\f0\lang16393\par
+Add Residual Connection\par
+       \f3\u8595?\f0\lang16393\par
+Normalize\par
+\par
+\b 12. Encoder Architecture\par
+\b0 Each Encoder Layer contains:\par
+
+\pard 
+{\pntext\f0 1.\tab}{\*\pn\pnlvlbody\pnf0\pnindent360\pnstart1\pndec{\pntxta.}}
+\fi-360\li720\sa160\sl276\slmult1 Multi-Head Self-Attention\par
+{\pntext\f0 2.\tab}Add & Normalize\par
+{\pntext\f0 3.\tab}Feed Forward Network\par
+{\pntext\f0 4.\tab}Add & Normalize\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Encoder Flow\par
+\b0 Input Embedding\par
+       +\par
+Positional Encoding\par
+       \f3\u8595?\f0\lang16393\par
+Multi-Head Attention\par
+       \f3\u8595?\f0\lang16393\par
+Add & Normalize\par
+       \f3\u8595?\f0\lang16393\par
+Feed Forward Network\par
+       \f3\u8595?\f0\lang16393\par
+Add & Normalize\par
+\b Output\par
+\b0 A contextual representation of the entire input sequence.\par
+\par
+\b 13. Decoder Architecture\par
+\b0 The Decoder generates output tokens one word at a time.\par
+\b Components\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Masked Multi-Head Attention\par
+{\pntext\f4\'B7\tab}Encoder-Decoder Attention\par
+{\pntext\f4\'B7\tab}Feed Forward Network\par
+{\pntext\f4\'B7\tab}Layer Normalization\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Decoder Flow\par
+\b0 Previous Output\par
+       \f3\u8595?\f0\lang16393\par
+Masked Attention\par
+       \f3\u8595?\f0\lang16393\par
+Encoder-Decoder Attention\par
+       \f3\u8595?\f0\lang16393\par
+Feed Forward Network\par
+       \f3\u8595?\f0\lang16393\par
+Generate Next Word\par
+\par
+\b 14. Masked Self-Attention\par
+\b0 Masked Attention prevents the model from seeing future words during prediction.\par
+\b Example\par
+\b0 Input:\par
+"The weather is..."\par
+While predicting the next word, the model cannot see future words.\par
+\b Benefits\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Prevents cheating during training.\par
+{\pntext\f4\'B7\tab}Enables natural text generation.\par
+{\pntext\f4\'B7\tab}Supports autoregressive models like GPT.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 15. Transformer Variants\par
+Encoder-Only Models\par
+\b0 Examples:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 BERT\par
+{\pntext\f4\'B7\tab}RoBERTa\par
+
+\pard\widctlpar\sa160\sl276\slmult1 Used for:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 Text classification\par
+{\pntext\f4\'B7\tab}Sentiment analysis\par
+{\pntext\f4\'B7\tab}Search engines\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Decoder-Only Models\par
+\b0 Examples:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 GPT\par
+{\pntext\f4\'B7\tab}Llama\par
+
+\pard\widctlpar\sa160\sl276\slmult1 Used for:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 Content generation\par
+{\pntext\f4\'B7\tab}Chatbots\par
+{\pntext\f4\'B7\tab}Conversational AI\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Encoder-Decoder Models\par
+\b0 Examples:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 T5\par
+{\pntext\f4\'B7\tab}BART\par
+
+\pard\widctlpar\sa160\sl276\slmult1 Used for:\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1 Translation\par
+{\pntext\f4\'B7\tab}Summarization\par
+{\pntext\f4\'B7\tab}Question answering\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 16. Applications of Transformer Architecture\par
+\b0 Transformers drive most modern AI systems.\par
+\b Natural Language Processing\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Chatbots\par
+{\pntext\f4\'B7\tab}Translation\par
+{\pntext\f4\'B7\tab}Text summarization\par
+{\pntext\f4\'B7\tab}Sentiment analysis\par
+{\pntext\f4\'B7\tab}Question answering\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Generative AI\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 ChatGPT\par
+{\pntext\f4\'B7\tab}Microsoft Copilot\par
+{\pntext\f4\'B7\tab}Gemini\par
+{\pntext\f4\'B7\tab}Claude\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Software Development\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 GitHub Copilot\par
+{\pntext\f4\'B7\tab}Code generation\par
+{\pntext\f4\'B7\tab}Bug detection\par
+{\pntext\f4\'B7\tab}Documentation generation\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Enterprise Applications\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Customer support automation\par
+{\pntext\f4\'B7\tab}Knowledge management systems\par
+{\pntext\f4\'B7\tab}Business report generation\par
+{\pntext\f4\'B7\tab}Financial document analysis\par
+{\pntext\f4\'B7\tab}HR automation\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Healthcare\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Medical record summarization\par
+{\pntext\f4\'B7\tab}Clinical documentation\par
+{\pntext\f4\'B7\tab}Drug discovery support\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 17. Advantages of Transformer Architecture\par
+Technical Advantages\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Parallel processing capability.\par
+{\pntext\f4\'B7\tab}Better contextual understanding.\par
+{\pntext\f4\'B7\tab}Handles long sequences efficiently.\par
+{\pntext\f4\'B7\tab}Scales to billions of parameters.\par
+{\pntext\f4\'B7\tab}Supports transfer learning.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\b Business Advantages\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 Faster AI model training.\par
+{\pntext\f4\'B7\tab}Improved prediction accuracy.\par
+{\pntext\f4\'B7\tab}Enhanced customer experiences.\par
+{\pntext\f4\'B7\tab}Increased automation capabilities.\par
+{\pntext\f4\'B7\tab}Better decision-making support.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 18. Challenges of Transformer Architecture\par
+\b0 Despite its advantages, Transformers also face certain challenges.\par
+\b Limitations\par
+
+\pard{\pntext\f4\'B7\tab}{\*\pn\pnlvlblt\pnf4\pnindent360{\pntxtb\'B7}}\fi-360\li720\sa160\sl276\slmult1\b0 High computational requirements.\par
+{\pntext\f4\'B7\tab}Large memory consumption.\par
+{\pntext\f4\'B7\tab}Expensive training costs.\par
+{\pntext\f4\'B7\tab}Requires substantial training data.\par
+{\pntext\f4\'B7\tab}Potential bias inherited from training datasets.\par
+
+\pard\widctlpar\sa160\sl276\slmult1\par
+\b 19. Conclusion\par
+\b0 Transformer Architecture is the technological foundation behind modern Artificial Intelligence and Generative AI systems. Its innovative use of Self-Attention, Multi-Head Attention, Positional Encoding, Feed Forward Networks, Residual Connections, and Layer Normalization enables models to understand context more effectively than previous architectures. By overcoming the limitations of RNNs and LSTMs, Transformers have made possible advanced AI systems such as GPT, BERT, Gemini, Claude, and Microsoft Copilot. Today, Transformers power applications ranging from conversational AI and content generation to healthcare, finance, software development, and enterprise automation, making them one of the most important breakthroughs in the history of Artificial Intelligence.\par
+\par
+
+\pard\sa200\sl276\slmult1\kerning0\f1\fs22\lang9\par
+}
+ 
